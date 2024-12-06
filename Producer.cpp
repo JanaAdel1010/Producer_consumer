@@ -13,7 +13,7 @@
 #define SEM_KEY 8273
 
 struct Commodity {
-    char name[10];
+    char name[11];
     double price;
 };
 
@@ -39,8 +39,8 @@ void sem_signal(int sem_id, int sem_num) {
     semop(sem_id, &sb, 1);
 }
 void append(SharedBuffer *shared_buffer, int buffer_size, const std::string &commodity_name, double price) {
-    strncpy(shared_buffer->buffer[shared_buffer->in].name, commodity_name.c_str(), 10);
-    shared_buffer->buffer[shared_buffer->in].name[9] = '\0';
+    strncpy(shared_buffer->buffer[shared_buffer->in].name, commodity_name.c_str(), 11);
+    shared_buffer->buffer[shared_buffer->in].name[10] = '\0';
     shared_buffer->buffer[shared_buffer->in].price = price;
 
     shared_buffer->in = (shared_buffer->in + 1) % buffer_size;
