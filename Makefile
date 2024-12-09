@@ -1,17 +1,19 @@
-cc= g++
-ccflags=-std=c++11 -Wall
+CCX = g++
+CCXFLAGS = -std=c++17 -Wall
 
+PRODUCER_SRC = Producer.cpp
+CONSUMER_SRC = Consumer.cpp
 
 PRODUCER_BIN = producer
 CONSUMER_BIN = consumer
 
 all: $(PRODUCER_BIN) $(CONSUMER_BIN)
 
-$(PRODUCER_BIN): $(producer.cpp)
-	$(cc) $(ccflags) $(producer.cpp) -o $(PRODUCER_BIN)
+$(PRODUCER_BIN): $(PRODUCER_SRC)
+	$(CCX) $(CCXFLAGS) $(PRODUCER_SRC) -o $(PRODUCER_BIN)
 
-$(CONSUMER_BIN): $(consumer.cpp)
-	$(cc) $(ccflags) $(consumer.cpp) -o $(CONSUMER_BIN)
+$(CONSUMER_BIN): $(CONSUMER_SRC)
+	$(CCX) $(CCXFLAGS) $(CONSUMER_SRC) -o $(CONSUMER_BIN)
 
 clean:
 	rm -f $(PRODUCER_BIN) $(CONSUMER_BIN)
@@ -22,4 +24,4 @@ run_producer: $(PRODUCER_BIN)
 run_consumer: $(CONSUMER_BIN)
 	./$(CONSUMER_BIN) $(args)
 
-.PHONY: 
+.PHONY: all clean run_producer run_consumer
